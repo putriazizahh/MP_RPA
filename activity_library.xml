@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="#FFFFFF"
+    android:orientation="vertical"
+    tools:context=".library">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp">
+
+        <ImageView
+            android:id="@+id/logo"
+            android:layout_width="126dp"
+            android:layout_height="28dp"
+            android:layout_marginStart="4dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/logo" />
+
+        <ImageView
+            android:id="@+id/menuAtas"
+            android:layout_width="215dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@id/logo"
+            android:scaleType="fitXY"
+            android:src="@drawable/rectangle" />
+
+        <ImageButton
+            android:id="@+id/account"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginLeft="320dp"
+            android:layout_centerVertical="true"
+            android:background="@drawable/acc"/>
+
+        <ImageButton
+            android:id="@+id/search"
+            android:layout_width="23dp"
+            android:layout_height="23dp"
+            android:layout_toLeftOf="@+id/account"
+            android:layout_marginRight="-293dp"
+            android:layout_centerVertical="true"
+            android:background="@drawable/search"/>
+
+        <ImageButton
+            android:id="@+id/notification"
+            android:layout_width="26dp"
+            android:layout_height="24dp"
+            android:layout_toLeftOf="@+id/search"
+            android:layout_marginRight="30dp"
+            android:layout_centerVertical="true"
+            android:background="@drawable/notif"/>
+
+        <ImageButton
+            android:id="@+id/connect"
+            android:layout_width="24dp"
+            android:layout_height="20dp"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="35dp"
+            android:layout_toLeftOf="@+id/notification"
+            android:background="@drawable/tv" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_marginBottom="10dp">
+
+        <TextView
+            android:id="@+id/libraryRecent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:text="Recent"
+            android:textColor="@color/black"/>
+
+        <ImageView
+            android:id="@+id/libraryVideo"
+            android:layout_width="353dp"
+            android:layout_height="100dp"
+            android:layout_marginStart="5dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/videos4"/>
+
+        <ImageView
+            android:id="@+id/libpembatas1"
+            android:layout_width="wrap_content"
+            android:layout_height="1dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/line2"/>
+
+        <ImageView
+            android:id="@+id/history"
+            android:layout_width="351dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="2dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/history"/>
+
+        <ImageView
+            android:id="@+id/yourvideos"
+            android:layout_width="351dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="2dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/yv"/>
+
+        <ImageView
+            android:id="@+id/downloads"
+            android:layout_width="351dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="2dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/downloads"/>
+
+        <ImageView
+            android:id="@+id/yourmovies"
+            android:layout_width="351dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="2dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/ym"/>
+
+        <ImageView
+            android:id="@+id/watchlater"
+            android:layout_width="351dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="2dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/wl"/>
+
+        <ImageView
+            android:id="@+id/libpembatas2"
+            android:layout_width="wrap_content"
+            android:layout_height="1dp"
+            android:layout_marginTop="2dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/line2"/>
+
+        <ImageView
+            android:id="@+id/playlist"
+            android:layout_width="351dp"
+            android:layout_height="25dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="2dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/playlist"/>
+
+        <ImageView
+            android:id="@+id/newplaylist"
+            android:layout_width="351dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="2dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/nplaylist"/>
+
+        <ImageView
+            android:id="@+id/likedvideos"
+            android:layout_width="351dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="2dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/liked"/>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/menuBawah"
+            android:layout_width="351dp"
+            android:layout_height="70dp"
+            android:layout_centerInParent="true"
+            android:scaleType="fitXY"
+            android:src="@drawable/rectangle" />
+
+        <ImageButton
+            android:id="@+id/library"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="300dp"
+            android:background="@android:color/transparent"
+            android:scaleType="fitXY"
+            android:src="@drawable/library2" />
+
+        <ImageButton
+            android:id="@+id/subscription2"
+            android:layout_width="60dp"
+            android:layout_height="40dp"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="-282dp"
+            android:layout_toLeftOf="@+id/library"
+            android:background="@android:color/transparent"
+            android:scaleType="fitXY"
+            android:src="@drawable/subs" />
+
+        <ImageButton
+            android:id="@+id/add"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_centerInParent="true"
+            android:background="@android:color/transparent"
+            android:scaleType="fitXY"
+            android:src="@drawable/add"/>
+
+        <ImageButton
+            android:id="@+id/shorts"
+            android:layout_width="50dp"
+            android:layout_height="40dp"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="20dp"
+            android:layout_toLeftOf="@+id/add"
+            android:background="@android:color/transparent"
+            android:scaleType="fitXY"
+            android:src="@drawable/shorts" />
+
+        <ImageButton
+            android:id="@+id/home2"
+            android:layout_width="35dp"
+            android:layout_height="40dp"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="30dp"
+            android:layout_toLeftOf="@+id/shorts"
+            android:background="@android:color/transparent"
+            android:scaleType="fitXY"
+            android:src="@drawable/home2" />
+    </RelativeLayout>
+
+</LinearLayout>
