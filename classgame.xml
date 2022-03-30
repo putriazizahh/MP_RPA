@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3">
+        
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:src="@drawable/sidemenu"
+            android:onClick="st"/>
+        <TextView
+            android:id="@+id/hdr"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:gravity="center|center_vertical"
+            android:text="Histery"
+            android:textSize="30sp"/>
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="4"/>
+    </LinearLayout>
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="22"
+        android:columnCount="3">
+
+        <TextView
+            android:id="@+id/s1"
+            android:layout_height="70dp"
+            android:layout_columnWeight="1"
+            android:gravity="center"
+            android:background="#3300FF00"
+            android:text="S1"
+            android:textAlignment="center"/>
+
+        <TextView
+            android:id="@+id/s2"
+            android:layout_height="70dp"
+            android:layout_columnWeight="1"
+            android:background="#00FF00"
+            android:gravity="center"
+            android:text="S2"
+            android:textAlignment="center" />
+        <TextView
+            android:id="@+id/s3"
+            android:layout_height="70dp"
+            android:layout_columnWeight="1"
+            android:gravity="center"
+            android:background="#3300FF00"
+            android:text="S3"
+            android:textAlignment="center"/>
+
+        <TextView
+            android:id="@+id/m1"
+            android:layout_height="70dp"
+            android:layout_columnWeight="1"
+            android:background="#3300FFD9"
+            android:gravity="center"
+            android:text="M1"
+            android:textAlignment="center" />
+
+        <TextView
+            android:id="@+id/m2"
+            android:layout_height="70dp"
+            android:layout_columnWeight="1"
+            android:background="#00FFD9"
+            android:gravity="center"
+            android:text="M2"
+            android:textAlignment="center" />
+        <TextView
+            android:id="@+id/m3"
+            android:layout_height="70dp"
+            android:layout_columnWeight="1"
+            android:gravity="center"
+            android:background="#3300FFD9"
+            android:text="M3"
+            android:textAlignment="center"/>
+        <TextView
+            android:id="@+id/t1"
+            android:layout_height="70dp"
+            android:layout_columnWeight="1"
+            android:gravity="center"
+            android:background="#3300FF00"
+            android:text="T1"
+            android:textAlignment="center"/>
+        <TextView
+            android:id="@+id/t2"
+            android:layout_height="70dp"
+            android:layout_columnWeight="1"
+            android:gravity="center"
+            android:background="#00FF00"
+            android:text="T2"
+            android:textAlignment="center"/>
+        <TextView
+            android:id="@+id/t3"
+            android:layout_height="70dp"
+            android:layout_columnWeight="1"
+            android:gravity="center"
+            android:background="#3300FF00"
+            android:text="T2"
+            android:textAlignment="center"/>
+
+        <TextView
+            android:id="@+id/T1"
+            android:layout_height="70dp"
+            android:layout_columnWeight="1"
+            android:layout_marginTop="150dp"
+            android:gravity="center"
+            android:background="#3300FF00"
+            android:text="T1"
+            android:textAlignment="center"/>
+
+        <TextView
+            android:id="@+id/T2"
+            android:layout_height="70dp"
+            android:layout_columnWeight="1"
+            android:layout_marginTop="150dp"
+            android:background="#00FF00"
+            android:gravity="center"
+            android:text="T2"
+            android:textAlignment="center" />
+        <TextView
+            android:id="@+id/T3"
+            android:layout_height="70dp"
+            android:layout_columnWeight="1"
+            android:layout_marginTop="150dp"
+            android:gravity="center"
+            android:background="#3300FF00"
+            android:text="T3"
+            android:textAlignment="center"/>
+
+        <TextView
+            android:id="@+id/M1"
+            android:layout_height="70dp"
+            android:layout_columnWeight="1"
+            android:background="#3300FFD9"
+            android:gravity="center"
+            android:text="M1"
+            android:textAlignment="center" />
+
+        <TextView
+            android:id="@+id/M2"
+            android:layout_height="70dp"
+            android:layout_columnWeight="1"
+            android:background="#00FFD9"
+            android:gravity="center"
+            android:text="M2"
+            android:textAlignment="center" />
+        <TextView
+            android:id="@+id/M3"
+            android:layout_height="70dp"
+            android:layout_columnWeight="1"
+            android:gravity="center"
+            android:background="#3300FFD9"
+            android:text="M3"
+            android:textAlignment="center"/>
+        <TextView
+            android:id="@+id/S1"
+            android:layout_height="70dp"
+            android:layout_columnWeight="1"
+            android:gravity="center"
+            android:background="#3300FF00"
+            android:text="S1"
+            android:textAlignment="center"/>
+        <TextView
+            android:id="@+id/S2"
+            android:layout_height="70dp"
+            android:layout_columnWeight="1"
+            android:gravity="center"
+            android:background="#00FF00"
+            android:text="S2"
+            android:textAlignment="center"/>
+        <TextView
+            android:id="@+id/S3"
+            android:layout_height="70dp"
+            android:layout_columnWeight="1"
+            android:gravity="center"
+            android:background="#3300FF00"
+            android:text="S3"
+            android:textAlignment="center"/>
+    </GridLayout>
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3"
+        android:orientation="horizontal">
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="9"/>
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:src="@drawable/send"
+            android:onClick="snd"/>
+    </LinearLayout>
+</LinearLayout>
