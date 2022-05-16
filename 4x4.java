@@ -1,49 +1,45 @@
-package com.example.login;
+package com.example.splashscreen;
 
-import android.annotation.SuppressLint;
-import android.content.DialogInterface;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.content.DialogInterface;
 
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
-    private TextView playerOneScore, playerTwoScore, playerStatus, timer;
-    private final Button[] buttons = new Button[16];
-    private Button resetGame;
-    private int playerOneScoreCount, playerTwoScoreCount, rountCount;
-    private boolean activePlayer;
+public class MainActivity2 extends AppCompatActivity implements View.OnClickListener {
+    private Button[][] buttons = new Button[3][3];
+    private boolean player1Turn = true;
+    private int roundCount;
+  /*  private int player1Points;
+    private int player2Points;
+    private TextView textViewPlayer1, textviewPlayer2;*/
     private boolean chooseSign = true;
     private String playerOneSign, playerTwoSign;
-    int i;
-
-    int[] gameState = {2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2};
-
-    int[][] winningPositions = {
-            {0, 1, 2, 3}, {4, 5, 6, 7}, {8, 9, 10, 11}, {12, 13, 14, 15},
-            {0, 4, 8, 12}, {1, 5, 9, 13}, {2, 6, 10, 14}, {3, 7, 11, 15},
-            {0, 5, 10, 15}, {3, 6, 9, 12}
-    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_main2);
 
-        playerOneScore = findViewById(R.id.playerOneScore);
-        playerTwoScore = findViewById(R.id.playerTwoScore);
-        playerStatus = findViewById(R.id.playerStatus);
-        resetGame = findViewById(R.id.resetGame);
+        /*textViewPlayer1 = findViewById(R.id.playerOneScore);
+        textviewPlayer2 = findViewById(R.id.playerTwoScore);*/
 
         if (chooseSign) dialogChooseSide();
         else startGame();
+
+        Button buttonReset = findViewById(R.id.button_reset);
+        buttonReset.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                resetGame();
+            }
+        });
     }
 
     private void dialogChooseSide() {
@@ -51,9 +47,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         chooseSideDialog.setCancelable(false);
         chooseSideDialog.setTitle("Choose your side");
         chooseSideDialog.setPositiveButton("X", (dialogInterface, i) ->
-                readyToPlay(dialogInterface, "X", "O"));
-        chooseSideDialog.setNegativeButton("O", (dialogInterface, i) ->
-                readyToPlay(dialogInterface, "O", "X"));
+                readyToPlay(dialogInterface, "X", "0"));
+        chooseSideDialog.setNegativeButton("0", (dialogInterface, i) ->
+                readyToPlay(dialogInterface, "0", "X"));
         chooseSideDialog.create().show();
     }
 
@@ -65,112 +61,150 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         startGame();
     }
 
-    private void startGame() {
-        for (int i = 0; i < buttons.length; i++) {
-            String buttonID = "btn_" + i;
-            int resourceID = getResources().getIdentifier(buttonID, "id", getPackageName());
-            buttons[i] = findViewById(resourceID);
-            buttons[i].setOnClickListener(this);
+    private void startGame(){
+        for (int i = 0; i < 3; i++){
+            for (int j = 0; j < 3; j++){
+                String buttonID = "btn_" + i + j;
+                int resID = getResources().getIdentifier(buttonID, "id", getPackageName());
+                buttons[i][j] = findViewById(resID);
+                buttons[i][j].setOnClickListener(this);
+            }
         }
-
-        rountCount = 0;
-        playerOneScoreCount = 0;
-        playerTwoScoreCount = 0;
-        activePlayer = true;
     }
 
-    @SuppressLint("SetTextI18n")
     @Override
     public void onClick(View v) {
         if (!((Button) v).getText().toString().equals("")) {
             return;
         }
-        String buttonID = v.getResources().getResourceEntryName(v.getId());
-        int gameStatePointer = Integer.parseInt(buttonID.substring(buttonID.length() - 1
-        ));
-
-        if (activePlayer) {
+        if (player1Turn) {
             ((Button) v).setText(playerOneSign);
-            ((Button) v).setTextColor(Color.parseColor("#FFC34A"));
-            gameState[gameStatePointer] = 0;
         } else {
             ((Button) v).setText(playerTwoSign);
-            ((Button) v).setTextColor(Color.parseColor("#70FFEA"));
-            gameState[gameStatePointer] = 1;
         }
-        rountCount++;
 
-        if (checkWinner()) {
-            if (activePlayer) {
-                playerOneScoreCount++;
-                updatePlayerScore();
-                Toast.makeText(this, "Player One Won!", Toast.LENGTH_SHORT).show();
-            } else {
-                playerTwoScoreCount++;
-                updatePlayerScore();
-                Toast.makeText(this, "Player Two Won!", Toast.LENGTH_SHORT).show();
+        roundCount++;
+
+
+        if(checkForWin()) {
+            if (player1Turn) {
+                Toast.makeText(this, "Player 1 Wins ", Toast.LENGTH_SHORT).show();
+                nextLevel();
+            }else {
+                Toast.makeText(this, "Player 2 Wins ", Toast.LENGTH_SHORT).show();
+                nextLevel();
             }
-            playAgain();
-        } else if (rountCount == 16) {
-            playAgain();
-            Toast.makeText(this, "No winner!", Toast.LENGTH_SHORT).show();
+        } else if (roundCount == 9) {
+            draw();
+            draw();
         } else {
-            activePlayer = !activePlayer;
+            player1Turn = !player1Turn;
         }
-
-        if (playerOneScoreCount > playerTwoScoreCount) {
-            playerStatus.setText("Player One is Winning!");
-        } else if (playerTwoScoreCount > playerOneScoreCount) {
-            playerStatus.setText("Player Two is Winning!");
-        } else {
-            playerStatus.setText("");
-        }
-
-        resetGame.setOnClickListener(v1 -> {
-            playAgain();
-            playerOneScoreCount = 0;
-            playerTwoScoreCount = 0;
-            playerStatus.setText("");
-            updatePlayerScore();
-            dialogChooseSide();
-        });
     }
 
-    public boolean checkWinner() {
-        boolean winnerResult = false;
-        for (int[] winningPosition : winningPositions) {
-            if (gameState[winningPosition[0]] == gameState[winningPosition[1]] &&
-                    gameState[winningPosition[1]] == gameState[winningPosition[2]] &&
-                    gameState[winningPosition[2]] == gameState[winningPosition[3]] &&
-                    gameState[winningPosition[0]] != 2) {
-                winnerResult = true;
-                break;
+    private boolean checkForWin() {
+        String[][] field = new String[3][3];
+
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                field[i][j] = buttons[i][j].getText().toString();
             }
         }
-        return winnerResult;
-    }
 
-    @SuppressLint("SetTextI18n")
-    public void updatePlayerScore() {
-        playerOneScore.setText(Integer.toString(playerOneScoreCount));
-        playerTwoScore.setText(Integer.toString(playerTwoScoreCount));
-    }
-
-    public void playAgain() {
-        rountCount = 0;
-        activePlayer = true;
-
-        for (int i = 0; i < buttons.length; i++) {
-            gameState[i] = 2;
-            buttons[i].setEnabled(false);
-            int i2 = i;
-            buttons[i].animate().alpha(0f).setDuration(500).withEndAction(() -> {
-                        buttons[i2].setText("");
-                        buttons[i2].animate().alpha(1f).setDuration(1000).withEndAction(() ->
-                                buttons[i2].setEnabled(true)).start();
-                    }
-            ).start();
+        for (int i = 0; i < 3; i++) {
+            if (field[i][0].equals(field[i][1]) &&
+                    field[i][0].equals(field[i][2]) &&
+                    !field[i][0].equals("")){
+                return true;
+            }
         }
+
+        for (int i = 0; i < 3; i++) {
+            if (field[0][i].equals(field[1][i]) &&
+                    field[0][i].equals(field[2][i]) &&
+                    !field[0][i].equals("")){
+                return true;
+            }
+        }
+
+        if (field[0][0].equals(field[1][1]) &&
+                field[0][0].equals(field[2][2]) &&
+                !field[0][0].equals("")){
+            return true;
+        }
+
+        if (field[0][2].equals(field[1][1]) &&
+                field[0][2].equals(field[2][0]) &&
+                !field[0][2].equals("")){
+            return true;
+        }
+        return false;
     }
 
+    /*private void player1Wins() {
+        player1Points++;
+        Toast.makeText(this, "Player 1 Wins ", Toast.LENGTH_SHORT).show();
+        updatePointsText();
+        resetBoard();
+    }
+
+    private void player2Wins() {
+        player2Points++;
+        Toast.makeText(this, "Player 2 Wins ", Toast.LENGTH_SHORT).show();
+        updatePointsText();
+        resetBoard();
+    }*/
+
+    private void draw(){
+        Toast.makeText(this, "Draw!", Toast.LENGTH_SHORT).show();
+        resetBoard();
+    }
+
+    /*private void updatePointsText(){
+        textViewPlayer1.setText(Integer.toString(player1Points));
+        textviewPlayer2.setText(Integer.toString(player2Points));
+    }*/
+
+    private void resetBoard(){
+        for (int i = 0 ; i < 3; i++){
+            for(int j = 0; j < 3; j++){
+                buttons[i][j].setText("");
+            }
+        }
+        roundCount = 0;
+        player1Turn = true;
+    }
+
+    private void resetGame() {
+       /* player1Points=0;
+        player2Points=0;*/
+        /*updatePointsText();*/
+        resetBoard();
+        dialogChooseSide();
+    }
+
+    public void nextLevel() {
+        Intent intent = new Intent(this, MainActivity3.class);
+        startActivity(intent);
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        outState.putInt("roundCount",roundCount);
+        /*outState.putInt("player1Points",player1Points);
+        outState.putInt("player2Points",player2Points);*/
+        outState.putBoolean("player1Turn",player1Turn);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+
+        roundCount = savedInstanceState.getInt("roundCount");
+        /*player1Points = savedInstanceState.getInt("player1Points");
+        player2Points = savedInstanceState.getInt("player2Points");*/
+        player1Turn = savedInstanceState.getBoolean("player1Turn");
+    }
 }
